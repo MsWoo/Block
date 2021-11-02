@@ -10,7 +10,7 @@
 <body>
 
 <div class = "main">
-	<h1>200OK</h1>
+	<h1>Client</h1>
   
   <div sec:authorize="isAuthenticated()">
   
@@ -34,7 +34,7 @@
 	  <br>
 	  <button onclick="location.href='/mypage'">MyPage</button>
 	  <br>
-	  <button onclick="location.href='/board/BoardList'">Board</button>
+	  <button onclick="location.href='/register'">Register</button>
 
   	  <div sec:authorize="hasRole('ADMIN')">
 	  	<button onclick="location.href='/list'">List</button>

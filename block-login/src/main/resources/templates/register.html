@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="/css/home.css" />
+<!--  그나저나 이 경로 대체 어떻게 되먹은거야  -->
+<title>home</title>
+</head>
+
+
+<body>
+
+	<div class="main">
+		<h1>Register</h1>
+
+		<div sec:authorize="isAuthenticated()">
+
+			<form th:action="@{/logout}" method="post">
+				Welcome <span th:text="${name}"></span>
+				<button type="submit" id="logout" onclick="location.href='/logout'">Logout</button>
+			</form>
+
+		</div>
+
+		<!-- 로그인 되지 않았을때 -->
+		<div sec:authorize="!isAuthenticated()">
+			<button onclick="location.href='/loginPage'">Login</button>
+			<button onclick="location.href='/signup'">Sign up</button>
+		</div>
+
+
+		<!-- 로그인 되어있을 때-->
+		<div sec:authorize="isAuthenticated()">
+			<br>
+			<div>Public Key 입력</div>
+
+			<form th:action="@{/register}" method="post"
+				style="text-align: center;">
+				<div class="form-container">
+					<input type="text" id="code" name="code" required
+						class="form-control" placeholder="publicKey">
+					<div class="form-actions">
+						<button type="submit" id="btn_turn_in">register</button>
+					</div>
+				</div>
+			</form>
+
+		</div>
+
+
+	</div>
+</body>
+</html>

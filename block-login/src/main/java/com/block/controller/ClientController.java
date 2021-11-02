@@ -1,6 +1,7 @@
 package com.block.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +26,6 @@ import lombok.RequiredArgsConstructor;
 public class ClientController {
 	
 	private final UserService service;
-	
 	
 	@RequestMapping("/")
 	public String home(Model model, Authentication authentication) {
@@ -115,5 +115,10 @@ public class ClientController {
 		return "redirect:/list";	
 	}
 
+    @RequestMapping("/register")
+	private String register() {
+		return "register";
+	}
+    
 	
 }

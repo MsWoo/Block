@@ -21,6 +21,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.oauth2.client.web.AuthorizationRequestRepository;
+import org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -92,8 +94,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 					public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 							Authentication authentication) throws IOException, ServletException {
 						
+						
+						
 //						authentication : 로그인 성공한 OAuth User의 정보
 						String message = authentication.getName().toString();
+						//
+						System.out.println(message);
+						//
 						String[] info = message.split(",");
 						String client = info[0];
 //						캡스톤
@@ -115,6 +122,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 			.logout().logoutSuccessUrl("/loginPage");	  
 	
 	}
+	
 	
 	@Bean
 	public CorsConfigurationSource corsConfigurationSource() {
